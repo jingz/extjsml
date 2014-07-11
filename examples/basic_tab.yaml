@@ -1,0 +1,71 @@
+:engine:
+  :noid: true
+:layout:
+  panel#tab-example:
+    tabpanel:
+    - panel#first-tab:
+      - label#first@{ :html("<h1>Basic Text</h1>") }
+      - div#first-content
+    - panel#second-tab:
+      - label#second@{ :html("<h1>With Inner Grid</h1>") }
+      - div#second-content
+      - div#btn-wrapper@{ :margins(5 5) }:
+        - - button#create
+        - - button#remove
+    #   - grid#grd:
+    #     - gtext#col-first
+    #     - gtext#col-second
+    #     - gnumber#col-num
+    #     - paging
+    # - panel#third-tab:
+    #   - form#frm:
+    #     - fieldset#basic-form:
+    #       - textfield#text
+    #       - numberfield#number
+    #       - currency#money
+    #       - numeric#numeric
+    #       - combo#combo@{ :store([opt1, opt2, opt3]) }
+    #       - datefield#date
+    #       - timefield#time
+    #       - filefield#upload
+    #       - compositefield#composite:
+    #         - textfield#composit-a@{ :value("ReadOnly") :readOnly(true) }
+    #         - textfield#composit-b@{ :disabled(true) :value("Disabled") }
+    #         - button#nothing
+    #       - checkboxgroup#chk-group:
+    #         - checkbox#check-a
+    #         - checkbox#check-b
+    #       - radiogroup#radio:
+    #         - radio#chanel-a
+    #         - radio#chanel-b@{ :default(true) }
+    #       - div@{ :html("<hr/>") }:
+    #       - div#button-wrapper:
+    #         - [ button#submit ]
+    #         - [ button#cancel ]
+:config:
+  tab-example:
+    style: >
+      position: auto;
+      margin: 0 auto;
+      height: 600px;
+      width: 960px;
+      margin-top: 30px;
+  first-content: &lorem
+    :html: >
+      <hr/>
+      <pre>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+        sed diam nonummy nibh euismod tincidunt ut laoreet
+        dolore magna aliquam erat volutpat.
+        Ut wisi enim ad minim veniam, quis nostrud exerci
+        tation ullamcorper suscipit lobortis nisl ut aliquip ex
+        ea commodo consequat. Duis autem vel eum iriure dolor
+        in hendrerit in vulputate velit esse molestie consequat,
+        vel illum dolore eu feugiat nulla facilisis at vero eros et
+        accumsan et iusto odio dignissim qui blandit praesent luptatum
+        zzril delenit augue duis dolore te feugait nulla facilisi.
+        Nam liber tempor cum soluta nobis eleifend option congue nihil
+        imperdiet doming id quod mazim placerat facer possim assum.
+      </pre>
+      <hr/>
+      <button>Simple HTML Button</button>

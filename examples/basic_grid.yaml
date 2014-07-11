@@ -1,0 +1,97 @@
+:layout:
+  panel#grid-example:
+    # - - form#frm-info@{ :height(300) :padding(0) }:
+    #     - fieldset#info:
+    #       - textfield#text-column
+    #       - numberfield#number-column
+    #       - checkbox#boolean-column@{ :hideLabel(false) }
+    #       - datefield#date-column
+    #       # - currency#currency-column
+      - grid#grid@{ :stripeRows(true) :enableDragDrop(true) :height(300) }:
+    #     - toolbar:
+    #       - button#add
+    #       - tbseparator
+    #       - button#update
+    #       - tbseparator
+    #       - button#delete
+    #       - tbfill
+    #       - tbseparator
+    #       - button#load-example-data
+        - runningcolumn
+        - gtext#text-column
+        - gnumber#number-column
+        - gboolean#boolean-column@{ :text(Yes/No) }
+        - gdate#date-column
+        # - gcurrency#currency-column
+        - gaction#action-column
+        - paging
+    # - - panel#code-display@{ :width(360) }:
+    #     - div#code@{ :height(auto) }
+
+:config:
+  grid-example:
+    style: >
+      position: auto;
+      margin: 0 auto;
+      height: 600px;
+      width: 960px;
+      margin-top: 30px;
+  code-display:
+    padding: 0
+  code: 
+    style: >
+      padding: 0.3em;
+      background-color: #ccc;
+      overflow-x: auto;
+      overflow-y: auto;
+    html: > 
+      <pre>
+      <code>
+        :layout:
+          panel#grid-example:
+            -
+              - form#frm-info@{ :height(300) :padding(0) }:
+                - fieldset#info:
+                  - textfield#text-column
+                  - numberfield#number-column
+                  - checkbox#boolean-column@{ :hideLabel(false) }
+                  - datefield#date-column
+                  - currency#currency-column
+              - grid#grid@{ :height(300) :layout(auto) }:
+                - toolbar:
+                  - button#add
+                  - tbseparator
+                  - button#update
+                  - tbseparator
+                  - button#delete
+                  - tbfill
+                  - tbseparator
+                  - button#load-example-data
+                - runningcolumn
+                - gtext#text-column
+                - gnumber#number-column
+              - gboolean#boolean-column@{ :text(Yes/No) }
+              - gdate#date-column
+              - gcurrency#currency-column
+              - gaction#action-column
+              - paging
+          -
+            - panel#code-display@{ :width(350) :height(auto) }:
+              - div#code@{ :height(auto) }
+        :config:
+          grid-example:
+            style: >
+              position: auto;
+              margin: 0 auto;
+              width: 960px;
+              margin-top: 30px;
+          code-display:
+            padding: 0
+          code: 
+            style: >
+              padding: 0.3em;
+              background-color: #ccc;
+              overflow-x: auto;
+              overflow-y: auto;
+        </code>
+      </pre>

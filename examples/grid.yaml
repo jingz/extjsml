@@ -1,0 +1,75 @@
+:engine:
+  :noid: true
+:layout:
+  div#viewport@{ :autoScroll(true) }:
+    panel#win:
+    - panel#pan-a:
+      - textfield#cat
+    - panel#pan-b:
+      - textfield#cat
+    tabpanel#tab-panel@{ :height(200) }:
+    - panel#first-panel:
+      - textfield#just-test
+    - panel#second-panela@{ :layout("fit") }:
+      - grid#simple-grid:
+        - gtext#t-col1
+        - gtext#t-col2
+        - gtext#t-col3
+        - gtext#t-col4
+    div.bk@{ :html("<hr/>") }:
+    form#simple-form@{ :title("Simple Form") }:
+      fieldset#first-secton:
+      - fieldcontainer#field-cont:
+        - textfield#first-name
+        - textfield#last-name
+        - datefield#birth@{ :width(100) }
+      - combo#list-box@{ :store([123,456,579]) }
+      fieldset#form-control@{ :labelWidth(150) }:
+      - - textfield#txt-field
+        - checkbox#chk-is-true
+        - checkbox#is-empty
+        - combo#test-combo
+        - filefield#up-to-load
+        - textarea#txt-area
+      - - textfield#txtasdfasdf-field
+        - textfield#string-comp
+        - htmleditor#html-xxx@{ :width(500) }
+        - radiogroup#gender:
+          - radio#male
+          - radio#female
+      - - textfield#anther-field
+        - numberfield#number
+        - datefield#a-date
+        - timefield#a-time
+        - checkboxgroup#chk-grp:
+          - checkbox#abc
+          - checkbox#def
+      toolbar:
+      - button#just-a-button
+      - button#just-a-button
+      - button#just-a-button
+      - button#just-a-button
+      - button#just-a-button
+    div.blank@{ :html("<hr/>") }:
+    div:
+    - - grid#grid@{ :width(600) :height(400) :url("/test") }:
+        - toolbar:
+          - button#create
+          - tbseparator
+          - button#update
+          - tbseparator
+          - button#remove
+        - gcheck#check-column
+        - gtext#text-column
+        - gtext#string-column
+        - gnumber#number-column
+        - gboolean#boolean-column
+        - gdate#date-column
+        - paging
+    - - grid#a-grid@{ :width(600) :height(400) :url("/test") }:
+        - gtext#text-column
+        - gtext#string-column
+        - gnumber#number-column
+        - gboolean#boolean-column
+        - gdate#date-column
+        - paging

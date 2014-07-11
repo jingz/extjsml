@@ -1,0 +1,40 @@
+:engine:
+  :noid: true
+:layout:
+  panel#viewport:
+  # -
+    - editorgrid#egrid@{ :height(500) }:
+      - toolbar:
+        - button#add
+        - tbseparator
+        - button#update
+        - tbseparator
+        - button#delete
+        - tbfill
+        - tbseparator
+        - button#load-example-data
+        - tbseparator
+        - button#get-changed-data
+      - runningcolumn
+      - gtext#text-column
+      - gnumber#number-column
+      - gboolean#boolean-column@{ :text(Yes/No) }
+      - gdate#date-column
+      - gcurrency#currency-column
+      - gaction#action-column
+      - paging
+    - label@{ :html("<h1><font color=red>*** Open console to watch events log.[ctr + shift + j for chrome]</font></h1>") }
+  # -
+  #   - panel#result@{ :anchor("right 50") :width(360) }:
+  #     - fieldset: 
+  #       - textarea#on-click-result@{ :height(100) :width(90%) }
+  #       - textarea#on-change-result@{ :height(100) :width(90%) }
+  #       - textarea#on-after-edit-result@{ :height(100) :width(90%) }
+
+:config:
+  viewport:
+    :style: >
+      position: auto;
+      margin: 0 auto;
+      width: 960px;
+      margin-top: 30px;

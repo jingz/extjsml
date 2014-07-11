@@ -1,0 +1,52 @@
+YAML Convention
+==============
+> constist of two hash; layout and config
+> layout mush have only one root node
+> node format xtype[#id][.class1_class2] ie textfield#text-id.bold_italic
+    > id and class format: xxxx-xxxx-xxxx using dashed to seperate words.
+> if node value is hash or array (not root). It will generate extnodes according to
+  their xtype wrapped by ExtJS container automatically.
+> if node value is array of array. It will generate hbox layout to wrapper all
+  the inner elements
+  example of YAML array
+  - 
+    - nodeA
+  -
+    - nodeB
+  or 
+  - [ nodeA ]
+  - [ nodeB ]
+> The first class of grid is used as store name of itself.
+> The inline config @{ :attr(value) } but priority is less than normal config.
+
+Builder 
+======
+> The id which separate btw word by dash(-) of each element will tranform to title, name, ref, header:grid automatically
+  but be able to override it by setting its config
+  ex if set id: client-name
+    the following is the attributes stem from the ID
+    title: Client Name
+    name: client_name
+    ref: clientName   * this ref can use in event script like this.clientName
+    header: Client Name
+    ...
+
+Features
+========
+  > grid@{ :selector([checkbox|checkboxs]) } # generate grid using checbox for row selector
+
+unexpected error
+===============
+> id must be unique
+> id MUST not be the same as instance method
+> beware nested form tag
+> reserve word for id ex. title add
+
+
+TODO
+====
+  ok alias config attributes by component
+  > check dup id ?
+  > standard search form for grid
+  > configurable generator i.e. left or right checkbox label
+  > compositefield eliminated in case show in hbox

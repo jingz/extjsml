@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>ExtJS 4.2 !!</title>
+
+        <!-- <link rel="stylesheet" href="../NewbridgeGreen-extjs-theme-bootstrap/resources/css/bootstrap/bootstrap.css" type="text/css" media="screen" charset="utf-8"> -->
+        <link rel="stylesheet" href="../ext-4.2.1.883/resources/ext-theme-neptune/ext-theme-neptune-all.css" type="text/css" media="screen" charset="utf-8">
+        <script src="../ext-4.2.1.883/ext-all-debug.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../lib/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="ex_patch.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="Basic_grid.ui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Basic_grid.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="Basic_tab.ui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Basic_tab.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Grid.ui.js" type="text/javascript" charset="utf-8"></script>
+        <script src="Grid.js" type="text/javascript" charset="utf-8"></script>
+
+        <script type="text/javascript" charset="utf-8">
+            Ext.onReady(function(){
+                // var cmp = new Basic_grid({ renderTo: Ext.get("container") });
+                var cmp = new Grid({ renderTo: Ext.get("container") });
+            });
+        </script>
+
+    </head>
+    <body style="background-color: orange;">
+        <div id="container">
+        </div>
+    </body>
+</html>

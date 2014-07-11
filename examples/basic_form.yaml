@@ -1,0 +1,51 @@
+:layout:
+  panel#viewport@{ :text(Basic Form) }:
+    form#frm:
+    - fieldset#basic-form:
+      - textfield#text
+      - numberfield#number
+      - currency#money
+      - numeric#numeric
+      - combo#combo@{ :store([opt1, opt2, opt3]) }
+      - datefield#date
+      - timefield#time
+      - filefield#upload
+      - compositefield#composite:
+        - textfield#composit-a@{ :value("ReadOnly") :readOnly(true) }
+        - textfield#composit-b@{ :disabled(true) :value("Disabled") }
+        - button#nothing
+      - checkboxgroup#chk-group:
+        - checkbox#check-a
+        - checkbox#check-b
+      - radiogroup#radio:
+        - radio#chanel-a
+        - radio#chanel-b@{ :default(true) }
+      - textarea#text-area
+      - div@{ :html("<hr/>") }:
+      - div#button-wrapper:
+        - [ button#submit ]
+        - [ button#cancel ]
+:config:
+  viewport:
+    :style: >
+      position: auto;
+      margin: 0 auto;
+      width: 960px;
+      margin-top: 30px;
+  button-wrapper:
+    :style: >
+      margin-left: 80px;
+  submit:
+    :width: 100
+    :onClick: >
+      <js>function(){
+        var params = Ext.getCmp('frm').
+                     serializeObject();
+        var txt = '';
+        _.each(params, function(v, k){
+          txt += (k + ' => ' + v);
+          txt += ', ';
+        });
+        alert(txt);
+      }</js>
+    
