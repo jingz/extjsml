@@ -3,7 +3,7 @@
 require 'extjsml/generator'
 
 def options_error
-  puts "extjsmlc: no input file ..."
+  puts "extjsmlc file.yml [-with-requierjs] [--class=jsclass]"
 end
 
 commands = ARGV
@@ -33,9 +33,10 @@ if f.nil?
   exit(1)
 end
 
+file_ext_regexp = /\.ya?ml$/
 if f == "."
   # "gen all yaml in dir"
-  files = Dir.open(".").grep(/yaml$/)
+  files = Dir.open(".").grep(file_ext_regexp)
 else
   files = [f] 
 end
@@ -45,26 +46,28 @@ files.each do |file|
   dirname = File.dirname(File.absolute_path(file))
   gen_config.merge!( :filedir => dirname )
 
-  js_class = file.split("/").last[0..-6] # strip .yaml
-  yaml_str = File.open(file,'rb')
+  js_class = file.split("/").last.gsub(file_ext_regexp, '')
 
   js_class = jsclass unless jsclass.nil?
+  file_output_name = js_class
+  gen_config.merge!(:file_output_name => file_output_name)
   js_class = js_class.capitalize
 
+  yaml_str = File.open(file,'rb')
   contents = compile_jext(yaml_str, js_class, gen_config)
 
   # create js ui file
-  File.open("#{dirname}/#{js_class}.ui.js","w") do |f|
+  File.open("#{dirname}/#{file_output_name}.ui.js","w") do |f|
     f.write(contents[:ui_class_content])
   end
-  puts "#{js_class}.ui.js created"
+  puts "#{file_output_name}.ui.js created"
 
   # gen js event script
-  unless File.exist?("#{dirname}/#{js_class}.js")
-    File.open("#{js_class}.js","w") do |f|
+  unless File.exist?("#{dirname}/#{file_output_name}.js")
+    File.open("#{file_output_name}.js","w") do |f|
       f.write(contents[:event_class_content])
     end
-    puts "#{js_class}.js created"
+    puts "#{file_output_name}.js created"
   end
 
 end

@@ -312,7 +312,7 @@ def compile_jext(yaml_str, js_class, options={})
   unless engine[:with_requirejs]
 
     ui_class_content = %Q{ 
-    #{js_class}UI = Ext.extend(#{root_node.xtype.to_extclassname},{
+    var #{js_class}UI = Ext.extend(#{root_node.xtype.to_extclassname},{
     #{JSON.pretty_generate(root_node.config).gsub!(/\{|\}/,"").strip!},
   initComponent: function(){
     Ext.applyIf(this,#{root_node.config={};nil}
@@ -514,7 +514,7 @@ define(function(){
 
   unless engine[:with_requirejs]
     event_class_content = %Q{ 
-    #{js_class} = Ext.extend(#{js_class}UI,{
+    var #{js_class} = Ext.extend(#{js_class}UI,{
   constructor: function  (config) {
     config = config || {};
     Ext.apply(this, config);
@@ -531,8 +531,9 @@ define(function(){
 });
     }.strip
   else
+    file_output_name = options[:file_output_name]
     event_class_content = %Q{ 
-define(["./#{js_class}.ui"], function(#{js_class}UI){
+define(["./#{file_output_name}.ui"], function(#{js_class}UI){
   var #{js_class} = Ext.extend(#{js_class}UI,{
     constructor: function  (config) {
       config = config || {};
