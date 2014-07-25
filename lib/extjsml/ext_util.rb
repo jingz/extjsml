@@ -72,6 +72,7 @@ class String
     # additional
     # :currency => $ 1,222.00
     currency: 'Ext.form.Currency',
+    pricefield: 'Ext.form.PriceField',
     # :numeric  => 1,222.00
     numeric: 'Ext.form.Numeric',
     # ux filefield
@@ -118,16 +119,18 @@ class String
 	  self[0].upcase + self[1..-1]
 	end
 
+  # some-store -> someStore
   def to_storeid(delimeter = '-')
     sid = self.split(delimeter)
     temp = sid[1..-1]
-    fword = sid[0];
+    fword = sid[0]
     temp.each do |el|
       fword += (el[0].upcase + el[1..-1])
     end
     
     fword
   end
+
 end
 
 class ExtUtil

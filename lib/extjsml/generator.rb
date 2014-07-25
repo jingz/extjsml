@@ -46,11 +46,9 @@ def build_node(*args, &block)
 
   if element.is_a? Hash
     begin
-      wrapper_hash = ExtContainer.new({ layout: "fit", 
-                                        autoHeight: true, 
+      wrapper_hash = ExtContainer.new({ layout: "fit", autoHeight: true, 
                                         style: "{height: 100%; margin: 0em 0em;}", 
-                                        defaults: { margins: "0 0"}}, 
-      parent)
+                                        defaults: { margins: "0 0"}}, parent)
       element.each do |k,v|
         xtype, options = ExtParser.parse(k)		
         options = yield(xtype, options) if block_given?
@@ -325,14 +323,14 @@ def compile_jext(yaml_str, js_class, options={})
 });
     }.strip
   else
-
+    res_json = JSON.pretty_generate(root_node.to_extjs, { space: "", max_nesting: 50})
+    required_store = ExtNode.get_used_store_filename
     ui_class_content = %Q{ 
-define(function(){
+define(#{required_store}, function(){
   var #{js_class}UI = Ext.extend(#{root_node.xtype.to_extclassname},{
     #{JSON.pretty_generate(root_node.config).gsub!(/\{|\}/,"").strip!},
     initComponent: function(){
-      Ext.applyIf(this,#{root_node.config={};nil}
-      #{JSON.pretty_generate(root_node.to_extjs, { space: "", max_nesting: 50})});
+      Ext.applyIf(this,#{root_node.config={};nil}#{res_json});
       #{js_class}UI.superclass.initComponent.call(this);
       var self = this;
       #{event_template.join("\n")}

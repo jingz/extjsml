@@ -234,6 +234,11 @@ class	ExtNode
       # gen random id for ref
     end
 
+    @@used_stores ||= []
+    if @config[:store] =~ /Store$/ and not @config[:skip_require_store]
+      @@used_stores << @config[:store]
+    end
+
     collect_events
     # TODO remove ref for *column xtype ?
     collect_ref(ref)
@@ -276,6 +281,21 @@ class	ExtNode
   def self.get_events
     @@events_store 
   end
+
+  def self.get_used_store
+    @@used_stores
+  end
+
+  def self.get_used_store_filename
+    dir_prefix = @@generator[:store_dir] ?
+       @@generator[:store_dir].gsub(/\/$/, '') : ""
+
+    @@used_stores.map do |store_cls|
+      filename = store_cls[0].upcase + store_cls[1..-1] #+ '.js'
+      "#{dir_prefix}/#{filename}"
+    end
+  end
+
 
   def self.get_refs
     @@refs 
