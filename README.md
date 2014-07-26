@@ -20,8 +20,8 @@ ExtJSML - ExtJS Markup Language based on YAML
 
 ### Example Syntax and UI result
 #### Basic Form
-![Basic Syntax](https://raw.github.com/jingz/ejext4/master/examples/basic_syntax.png)
-![Basic Form](https://raw.github.com/jingz/ejext4/master/examples/basic_form.png)
+![Basic Syntax](https://raw.github.com/jingz/extjsml/master/examples/basic_syntax.png)
+![Basic Form](https://raw.github.com/jingz/extjsml/master/examples/basic_form.png)
 
 ## Install
 ```shell
@@ -32,8 +32,8 @@ ExtJSML - ExtJS Markup Language based on YAML
    $ extjsmlc filename.yaml
 ```
 > output files:
-> - Filename.ui.js -> UI script
-> - Filename.js    -> event handling script
+> - filename.ui.js -> UI script
+> - filename.js    -> event handling script
 
 <!--
 ### Interactive
