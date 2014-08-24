@@ -1,11 +1,15 @@
 class ExtGridcolumn < ExtNode
   include Magic::Column
+
   @@ALIAS_CONFIG = {
     :text => :header,
     :name => :dataIndex
   }
+
   def initialize(config, parent)
-    @default_config = {}
+    @default_config = {
+      :width => 'auto' 
+    }
 
     super "gridcolumn", config, parent
   end

@@ -9,22 +9,21 @@ require_relative "./parser"
 require_relative "./ext_util"
 require_relative "./basenode"
 
-
 Dir.open("#{BASE_DIR}/../extmodules").each do |f|
   next unless f.match /rb$/ 
-  require "extmodules/#{f}"
+  require_relative "../extmodules/#{f}"
 end
 
 Dir.open("#{BASE_DIR}/../extclasses").grep(/rb$/).each do |f|
-  require "extclasses/#{f}"
+  require_relative "../extclasses/#{f}"
 end
 
 Dir.open("#{BASE_DIR}/../extplugins").grep(/rb$/).each do |f|
-  require "extplugins/#{f}"
+  require_relative "../extplugins/#{f}"
 end
 
 Dir.open("#{BASE_DIR}/../extuxs").grep(/rb$/).each do |f|
-  require "extuxs/#{f}"
+  require_relative "../extuxs/#{f}"
 end
 
 # recusive building node tree
