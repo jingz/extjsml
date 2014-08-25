@@ -223,7 +223,7 @@ class	ExtNode
     # end
 
     # not gen id
-    @config[:cmp_id] = conv_id_to_ref
+    @config[:cmp_id] = conv_id_to_ref if conv_id_to_ref
     unless @@generator[:noid].nil? 
       # skip if force gen id
       unless @config[:forceId]
