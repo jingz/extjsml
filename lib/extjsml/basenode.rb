@@ -290,7 +290,7 @@ class	ExtNode
     dir_prefix = @@generator[:store_dir] ?
        @@generator[:store_dir].gsub(/\/$/, '') : ""
 
-    @@used_stores.map do |store_cls|
+    @@used_stores.uniq.map do |store_cls|
       filename = store_cls[0].upcase + store_cls[1..-1] #+ '.js'
       "#{dir_prefix}/#{filename}"
     end
