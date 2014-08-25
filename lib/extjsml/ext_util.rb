@@ -103,7 +103,8 @@ class String
     templatecolumn:   'Ext.grid.TemplateColumn',
     # additional
     # gcurrency
-    currencycolumn: 'Ext.grid.CurrencyColumn'
+    currencycolumn: 'Ext.grid.CurrencyColumn',
+    rownumberer: 'Ext.grid.RowNumberer'
 
   } 
 

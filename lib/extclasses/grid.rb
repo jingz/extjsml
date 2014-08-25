@@ -46,7 +46,9 @@ class	ExtGrid < ExtNode
     # columns
     cols = []
     self.childs.each do |c|
-      cols << c.to_extjs(at_deep) unless c.xtype.match(/column$/).nil?
+      if not c.xtype.match(/column$/).nil? or c.xtype == 'rownumberer'
+        cols << c.to_extjs(at_deep)
+      end
     end
     @config.merge! :columns => cols unless cols.nil?
     
