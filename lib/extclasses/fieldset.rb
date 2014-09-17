@@ -45,7 +45,7 @@ class ExtFieldset < ExtNode
     if @config[:labelWidth]
       @config.merge!({ :defaults => { :labelWidth => @config[:labelWidth] } } )
       # if set a button at the last child
-      if @childs.last.xtype == "button"
+      if @childs.last.xtype == "button" and not @childs.last.config[:style].nil?
         btn_style = @childs.last.config[:style]
         new_btn_style = btn_style.dup if btn_style
         new_btn_style ||= "{}"

@@ -25,6 +25,12 @@ module FormField
           #   label_width = @config[:fieldLabel].size * ExtUtil.FontWidthRatio + 15
           #   @config.merge! :labelWidth => label_width
           end
+
+          # switch API
+          unless @config[:style].nil?
+            @config[:fieldStyle] = @config[:style]
+            @config.delete :style
+          end
         end
       end
     end

@@ -7,21 +7,9 @@ class	ExtTextfield < ExtNode
 
 	def initialize(config, parent)
     @default_config = {
-      :labelAlign => "right",
-      :autoCreate => {
-        :tag => "input",
-        :type => "text",
-        :autocomplete => "off"
-      }
+      :labelAlign => "right"
     }
-    if config[:autoCreate]
-      @default_config.merge! config[:autoCreate]
-      config.delete :autoCreate
-    end
-    if config[:emptyText]
-      @default_config[:autoCreate][:placeholder] = config[:emptyText]
-      config.delete :emptyText 
-    end
+
 		super('textfield',config, parent)
 	end
 end

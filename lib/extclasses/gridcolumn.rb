@@ -7,9 +7,7 @@ class ExtGridcolumn < ExtNode
   }
 
   def initialize(config, parent)
-    @default_config = {
-      :width => 'auto' 
-    }
+    @default_config = { }
 
     super "gridcolumn", config, parent
   end

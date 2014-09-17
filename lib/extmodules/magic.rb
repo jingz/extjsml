@@ -12,8 +12,8 @@ module Magic
         define_method :prepare_config do
           mod_column rescue "skip"
           @default_config.merge! :header => id_to_title, :dataIndex => conv_id_to_name unless @config[:id].nil?
-          @default_config.merge! :sortable => true
-          @default_config.merge! :width => 'auto'
+          @default_config.merge! :sortable => false
+          # @default_config.merge! :width => 'auto'
         end
       
       end
