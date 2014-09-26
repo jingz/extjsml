@@ -139,6 +139,7 @@ class ExtUtil
   ALIAS_TABLE = {
     :tab => :tabpanel,
     :div => :container,
+    :compositefield => :fieldcontainer,
     # column alias
     :gtext => :gridcolumn,
     :gboolean => :booleancolumn,

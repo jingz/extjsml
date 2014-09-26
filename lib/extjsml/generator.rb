@@ -57,8 +57,9 @@ def build_node(*args, &block)
         node.childs.each do |c|
           if c.xtype == "container" and 
             c.config[:layout] == "hbox" and 
-            node.xtype == "container" and
-            if c.child_of? "fieldset", "form"
+            node.xtype == "container"
+
+            if c.child_of? "fieldset", "form", "fieldcontainer"
               c.config.delete :labelWidth
               c.childs.each do |_c|
                 # _c.config.delete :labelWidth
@@ -76,6 +77,7 @@ def build_node(*args, &block)
           end
           end
         end
+
         wrapper_hash.add_child node
       end 
 
@@ -132,7 +134,7 @@ def build_node(*args, &block)
             # inherit fieldLableWidth 
             _config = { :layout => "anchor" }
             _config = { :layout => "hbox" } if parent.xtype == 'fieldcontainer'
-            pnode = node.find_parent("form","fieldset");
+            pnode = node.find_parent("form","fieldset", "fieldcontainer")
             # calculated proper labelWidth
             lw = []
             mlb = 0 # max label width
@@ -140,6 +142,7 @@ def build_node(*args, &block)
             is_contain_fieldset = false
             node.childs.each  do |c|
               next if c.xtype == "hidden"
+              next if pnode.xtype == "fieldcontainer"
               is_contain_fieldset = true if c.xtype == "fieldset"
               if ["radiogroup","checkboxgroup"].include? c.xtype
                 lb = [] 
@@ -154,6 +157,8 @@ def build_node(*args, &block)
                   c.override_config :width => lb_width
                 end
               end
+
+              # TODO string width
               lw << c.config[:fieldLabel].size * ExtUtil.FontWidthRatio + offset unless c.config[:fieldLabel].nil?
             end
 
