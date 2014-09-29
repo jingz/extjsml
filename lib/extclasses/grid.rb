@@ -124,7 +124,10 @@ class	ExtGrid < ExtNode
     # set paging
     paging = self.find("pagingtoolbar")
     if paging
-      paging.override_config :store => ("<js>this.#{rand_store_id}</js>" || @config[:store])
+      if paging.config[:store].nil?
+        paging.override_config :store => ("<js>this.#{rand_store_id}</js>" || @config[:store])
+      end
+
       unless @config[:store] =~ /<js>/
         paging.override_config :store => (rand_store_id || @config[:store])
       end

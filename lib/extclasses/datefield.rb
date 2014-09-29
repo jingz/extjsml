@@ -9,6 +9,7 @@ class ExtDatefield < ExtNode
     @default_config = {
       labelAlign: "right", 
       format: "d/m/Y", 
+      width: 110,
       cls: "date"
     }
     super "datefield", config, parent 
