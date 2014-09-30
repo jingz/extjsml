@@ -142,7 +142,7 @@ def build_node(*args, &block)
             is_contain_fieldset = false
             node.childs.each  do |c|
               next if c.xtype == "hidden"
-              next if pnode.xtype == "fieldcontainer"
+              # next if pnode.xtype == "fieldcontainer"
               is_contain_fieldset = true if c.xtype == "fieldset"
               if ["radiogroup","checkboxgroup"].include? c.xtype
                 lb = [] 
@@ -329,10 +329,10 @@ def compile_jext(yaml_str, js_class, options={})
   else
     res_json = JSON.pretty_generate(root_node.to_extjs, { space: "", max_nesting: 50})
     required_store = ExtNode.get_used_store_filename
+    # root_config = JSON.pretty_generate(root_node.config).gsub!(/^\{|\}$/,"").strip!
     ui_class_content = %Q{ 
 define(#{required_store}, function(){
   var #{js_class}UI = Ext.extend(#{root_node.xtype.to_extclassname},{
-    #{JSON.pretty_generate(root_node.config).gsub!(/\{|\}/,"").strip!},
     initComponent: function(){
       Ext.applyIf(this,#{root_node.config={};nil}#{res_json});
       #{js_class}UI.superclass.initComponent.call(this);
