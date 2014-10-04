@@ -7,7 +7,7 @@ module FormField
         mod_field rescue "skip"
         unless @config[:id].nil?
           @config.merge! :submitValue => true
-          @config.merge! :name => conv_id_to_name
+          @config.merge! :name => conv_id_to_name if @config[:name].nil?
 
           if @xtype == 'textfield'
             @config.merge! :emptyText => conv_id_to_label.capitalize
