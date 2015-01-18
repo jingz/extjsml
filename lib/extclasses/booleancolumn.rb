@@ -13,7 +13,9 @@ class ExtBooleancolumn < ExtNode
       width: 45
     }
 
-    if parent.xtype ==  "editorgrid"
+    gridparent = self.find_parent("grid")
+
+    if gridparent and gridparent.config[:__editorgrid]
       super "checkcolumn", config, parent
     else
       super "booleancolumn", config, parent
@@ -21,14 +23,12 @@ class ExtBooleancolumn < ExtNode
   end
 
   def to_extjs(at_deep = 0)
-    if parent.xtype ==  "editorgrid"
+    gridparent = self.find_parent("grid")
+    if gridparent and gridparent.config[:__editorgrid]
       self.xtype = "checkcolumn" 
     else
       self.xtype = "booleancolumn" 
     end
-    # if self.child_of? "editorgrid"
-    #   @config.merge! :editor => { :xtype => "checkbox", :boxLabel => "Check" }
-    # end
     super at_deep 
   end
 end

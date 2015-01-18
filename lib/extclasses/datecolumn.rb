@@ -13,9 +13,11 @@ class ExtDatecolumn < ExtNode
   end
 
   def to_extjs(at_deep = 0)
-    if self.child_of? "editorgrid"
+    gridparent = self.find_parent("grid")
+    if gridparent and gridparent.config[:__editorgrid]
       @config.merge! :editor => { :xtype => "datefield", format: "d/m/Y" }
     end
+
     super at_deep 
   end
 end

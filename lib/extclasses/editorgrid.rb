@@ -8,9 +8,11 @@ class ExtEditorgrid < ExtNode
 
 	def initialize(config, parent)
     @default_config = {
+      __editorgrid: true,
       title: 'My Grid',
       frame: true,
       width: "auto",
+      plugins: [{ xclass: 'Ext.grid.plugin.CellEditing'}],
       height: 200,
       clicksToEdit: 2,
       # enableHdMenu: false,
@@ -68,7 +70,7 @@ class ExtEditorgrid < ExtNode
       ]
     }
 
-		super("editorgrid", config, parent)	
+		super("grid", config, parent)	
 	end
 
   def to_extjs(at_deep = 0)
@@ -84,9 +86,27 @@ class ExtEditorgrid < ExtNode
     toolbar = self.find("toolbar")
     @config.merge! :tbar => toolbar.to_extjs(at_deep + 1) if toolbar
 
-    paging = self.find("paging")
+    # paging = self.find("paging")
+    # if paging
+    #   paging.override_config :store => @config[:store]
+    #   @config.merge! :bbar => paging.to_extjs(at_deep + 1)
+    # end
+
+    # set paging
+    rand_store_id = ExtUtil.random_id
+    paging = self.find("pagingtoolbar")
     if paging
-      paging.override_config :store => @config[:store]
+
+      if paging.config[:store].nil?
+        paging.override_config :store => ("<js>this.#{rand_store_id}</js>" || @config[:store])
+      end
+
+      if @config[:store]
+        paging.override_config :store => @config[:store]
+      else
+        paging.override_config :store => rand_store_id
+      end
+
       @config.merge! :bbar => paging.to_extjs(at_deep + 1)
     end
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'extjsml/generator'
+# require 'extjsml/generator'
+require_relative "../lib/extjsml/generator"
 
 def options_error
   puts "extjsmlc file.yml [-with-requierjs] [--class=jsclass]"

@@ -13,7 +13,8 @@ class ExtGridcolumn < ExtNode
   end
 
   def to_extjs(at_deep = 0)
-    if self.child_of? "editorgrid" and @config[:editor].nil?
+    gridparent = self.find_parent("grid")
+    if gridparent and gridparent.config[:__editorgrid] and @config[:editor].nil?
       @config.merge! :editor => { :xtype => "textfield" }
     end
     super at_deep 
